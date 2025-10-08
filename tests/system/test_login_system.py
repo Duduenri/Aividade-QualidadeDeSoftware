@@ -7,6 +7,9 @@ from selenium.webdriver.support import expected_conditions as EC
 BASE_URL = "https://www.saucedemo.com/"
 
 def do_login(driver, user, password):
+    driver.delete_all_cookies()
+    driver.get(BASE_URL)
+    driver.execute_script("window.localStorage.clear(); window.sessionStorage.clear();")
     driver.get(BASE_URL)
     WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((By.ID, "user-name"))
